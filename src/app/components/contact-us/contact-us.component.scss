@@ -1,0 +1,30 @@
+.left-container {
+  display: flex;
+  gap: 2rem;
+
+  .options-container {
+    width: 18%;
+
+    @media (max-width: 500px) {
+      width: 100%;
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+    }
+
+    .option {
+      padding: 1rem;
+      cursor: pointer;
+      border-radius: 8px;
+      flex: 0 0 auto;
+    }
+
+    .active {
+      background: var(--blue-100);
+    }
+  }
+
+  .content-container {
+    width: 70%;
+  }
+}

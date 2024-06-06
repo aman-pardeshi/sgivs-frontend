@@ -1,0 +1,38 @@
+app-footer {
+  margin-top: auto;
+}
+
+.layout-footer {
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #40404f;
+  color: #fff;
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .footer-start {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+    @media (max-width: 500px) {
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    img {
+      width: 2rem;
+    }
+
+    .app-name {
+      margin-left: 0.75rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+  }
+}

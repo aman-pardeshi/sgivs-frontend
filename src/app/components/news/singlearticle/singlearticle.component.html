@@ -1,0 +1,8 @@
+<div class="px-8">
+  <div class="card">
+    <h3 class="mb-1">{{ article?.title }}</h3>
+    <p>Published on {{ article?.date }}</p>
+
+    <div [innerHtml]="articleContent"></div>
+  </div>
+</div>

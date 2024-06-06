@@ -1,0 +1,106 @@
+<div class="wrapper">
+  <h2 class="p-1">{{ passportService?.title }}</h2>
+  <div class="visa-type-container mb-3">
+    <div [style]="{ width: '22%' }">
+      <div class="options-container card mb-0 p-3">
+        <div
+          *ngFor="let tab of passportService?.tabs; index as i"
+          (click)="handleTabChange(i)"
+          [ngClass]="{ active: tab === currentTab }"
+          class="option"
+        >
+          {{ tab.label }}
+        </div>
+      </div>
+    </div>
+    <div class="content-container card">
+      <h3>{{ currentTab?.title }}</h3>
+
+      <div *ngIf="currentTab.title === 'Fees'; else elseContentBlock">
+        <div class="">
+          <div class="field flex flex-column w-full">
+            <label htmlFor="applicationTypes" class="ml-1 mb-2 font-bold"
+              >Application Type
+            </label>
+
+            <p-dropdown
+              [options]="applicationTypes"
+              [(ngModel)]="selectedApplicationType"
+              optionLabel="label"
+              id="applicationTypes"
+              styleClass="w-full"
+              (onChange)="calculateFee()"
+              placeholder="Select application type"
+              [panelStyle]="{ width: '300px' }"
+            />
+          </div>
+        </div>
+
+        <div class="flex gap-3 mt-3 justify-content-evenly">
+          <div class="field flex flex-column w-4">
+            <label htmlFor="serviceType" class="ml-1 mb-2 font-bold"
+              >Service
+            </label>
+            <p-dropdown
+              [options]="serviceTypes"
+              [(ngModel)]="selectedServiceType"
+              optionLabel="label"
+              id="serviceType"
+              (onChange)="calculateFee()"
+              styleClass="w-full"
+              placeholder="Select application type"
+            />
+          </div>
+
+          <div class="flex flex-column w-4">
+            <label htmlFor="serviceType" class="ml-1 mb-2 font-bold"
+              >Booklet Type
+            </label>
+            <p-dropdown
+              [options]="bookletType"
+              [(ngModel)]="selectedBookletType"
+              optionLabel="label"
+              styleClass="w-full"
+              (onChange)="calculateFee()"
+              placeholder="Select application type"
+            />
+          </div>
+
+          <div class="flex flex-column w-4">
+            <label htmlFor="serviceType" class="ml-1 mb-2 font-bold"
+              >Applicant Age
+            </label>
+
+            <p-dropdown
+              [options]="ageGroups"
+              [(ngModel)]="selectedAgeGroup"
+              optionLabel="label"
+              styleClass="w-full"
+              (onChange)="calculateFee()"
+              placeholder="Select application type"
+            />
+          </div>
+        </div>
+
+        <div class="mt-3">
+          <div class="font-bold">Fee - AED</div>
+
+          <div>{{ fee }}</div>
+        </div>
+
+        <p class="text-sm text-red-300 mt-3">
+          ** Passport fee and service charges are non-refundable. <br />
+          ** Please note that there is a BLS Service charges of 9 AED and ICWF
+          Charge 8.05 AED in addition of the Passport fee for all categories of
+          Passport. <br />
+          ** Effective from 1st January-2018, 5% VAT will be levied on BLS fee,
+          premium lounge fee and Value added services. <br />
+          ** Value Added Service availed will be charged additional
+        </p>
+      </div>
+      <ng-template #elseContentBlock>
+        <div [innerHtml]="currentContent"></div>
+      </ng-template>
+    </div>
+  </div>
+</div>

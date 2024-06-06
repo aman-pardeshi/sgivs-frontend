@@ -1,0 +1,227 @@
+<!-- Hero Section -->
+<div class="hero-section">
+  <!-- <div class="main">
+    <h1 class="">
+      Experience Seamless
+      <div class="roller">
+        <span id="rolltext">
+          Passport Services<br />
+          Visa Services<br />
+          OCI Services<br />
+          Attestation Services<br />
+          Consular Services<br />
+        </span>
+      </div>
+    </h1>
+  </div> -->
+
+  <div class="main">
+    <h1>
+      Experience Seamless
+      <div
+        href=""
+        class="typewrite roller"
+        data-period="2000"
+        data-type='[ "Passport Services.", "Visa Services.", " OCI Services.", "Attestation Services." , "Consular Services"]'
+      >
+        <span class="wrap"></span>
+      </div>
+    </h1>
+  </div>
+
+  <div class="hero-description">
+    Your gateway to seamless passport, visa, attestation, and OCI services,
+    ensuring efficiency and peace of mind.
+  </div>
+
+  <button class="primary-btn mt-3">Book Appointment</button>
+
+  <img src="assets/demo/images/hero-bg.png" alt="" class="banner-bg-img" />
+
+  <img src="assets/demo/images/hero-bg.png" alt="" class="banner-bg-img2" />
+</div>
+
+<div class="process-container wrapper">
+  <h1 class="section-heading pl-5">Process</h1>
+
+  <div class="process-subcontainer">
+    <section class="container">
+      <div class="container__sources process-block">
+        <h4 class="mb-0">Choose Service Type</h4>
+      </div>
+
+      <svg viewbox="0 0 10 100">
+        <line x1="5" x2="5" y1="0" y2="100" />
+      </svg>
+
+      <div class="container__build process-block">
+        <h4 class="mb-0">Book Appointment</h4>
+      </div>
+
+      <svg viewbox="0 0 10 100 ">
+        <line x1="5" x2="5" y1="0" y2="100" />
+      </svg>
+
+      <div class="container__deploy process-block">
+        <h4 class="mb-0">Visit Center</h4>
+      </div>
+    </section>
+    <div>
+      <img
+        src="assets/demo/images/exploring_scrolling_animation.gif"
+        class="gif-element"
+      />
+    </div>
+  </div>
+</div>
+
+<div class="mt-2 banner-carousel">
+  <p-carousel
+    [value]="slides"
+    [numVisible]="1"
+    [numScroll]="1"
+    [circular]="true"
+    [autoplayInterval]="5000"
+  >
+    <!-- [responsiveOptions]="responsiveOptions" -->
+    <ng-template let-product pTemplate="item">
+      <div class="border-1 surface-border border-round m-2 p-3">
+        <div class="mb-3">
+          <div class="relative mx-auto">
+            <a [href]="product.link">
+              <img
+                src="{{ product.image.data.attributes.url }}"
+                [alt]="product.name"
+                class="w-full border-round"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </p-carousel>
+</div>
+
+<div class="performance-container">
+  <h1
+    class="main-heading wrapper"
+    [style]="{
+      color: '#000'
+    }"
+  >
+    Since 2001, we have processed <br />over
+    <span
+      [style]="{
+        color: '#017DD2'
+      }"
+      >287,380,263</span
+    >
+    application
+  </h1>
+
+  <div class="performance-subcontainer wrapper">
+    <div>
+      <h1 class="number-element">3415</h1>
+      <div class="number-subtitle">Application Centres</div>
+    </div>
+
+    <div>
+      <h1 class="number-element">151</h1>
+      <div class="number-subtitle">Countries of Operation</div>
+    </div>
+
+    <div>
+      <h1 class="number-element">67</h1>
+      <div class="number-subtitle">Client Governments</div>
+    </div>
+  </div>
+</div>
+
+<div class="news-visa-container wrapper">
+  <div class="subcontainer">
+    <h3>News and Updates</h3>
+
+    <div class="">
+      <div
+        class="news-card mb-3"
+        *ngFor="let article of newsArticles; let i = index"
+      >
+        <a
+          [routerLink]="['/news/article', article.attributes.slug]"
+          class="text-xl"
+          >{{ article.attributes.title }}</a
+        >
+
+        <div class="mt-2 flex gap-2 align-items-center">
+          <p-chip [label]="article.attributes.departure_country" />
+          <p-chip [label]="article.attributes.date" icon="pi pi-calendar" />
+        </div>
+      </div>
+    </div>
+
+    <p-button label="More News" [routerLink]="'/news/articles'" />
+  </div>
+
+  <div class="subcontainer">
+    <h3>Which type of Visa are you searching for?</h3>
+
+    <div class="flex flex-wrap gap-2">
+      <a
+        *ngFor="let visa of visaTypes; let i = index"
+        [routerLink]="['/visa/visa-types', visa.attributes.slug]"
+        class="visa-types text-xl"
+      >
+        {{ visa.attributes.title }}
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="media-container wrapper">
+  <div class="video-container">
+    <video controls>
+      <source
+        src="{{
+          videoMedia?.[0].media.data.attributes.url
+        }}"
+        type="video/mp4"
+      />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <div class="image-container">
+    <a [href]="image.link" *ngFor="let image of imageMedia">
+      <img src="{{ image.media.data.attributes.url }}" alt="" />
+    </a>
+  </div>
+</div>
+
+<p-divider />
+<div class="banner-carousel wrapper">
+  <p-carousel
+    [value]="testimonials"
+    [numVisible]="3"
+    [numScroll]="1"
+    [circular]="true"
+    styleClass="mb-3"
+  >
+    <!-- [responsiveOptions]="responsiveOptions" -->
+    <ng-template let-product pTemplate="item">
+      <div class="card m-2 testimonial-card">
+        <div class="relative flex content">
+          <blockquote class="">{{ product.review }}</blockquote>
+
+          <div class="mt-auto">
+            <cite>{{ product.reviewer_name }}</cite>
+            <div>{{ product.country }}</div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </p-carousel>
+</div>
+
+<div class="useful-links-container">
+  <app-useful-links></app-useful-links>
+</div>

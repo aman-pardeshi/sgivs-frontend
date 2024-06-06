@@ -1,0 +1,43 @@
+<div>
+  <div class="card">
+    <div class="text-900 font-bold text-xl mb-3">{{ pageData.heading }}</div>
+    <p class="text-600 line-height-3">{{ pageData.description }}</p>
+  </div>
+
+  <div class="flex flex-column md:flex-row gap-5">
+    <div class="card mb-0 md:w-20rem">
+      <div class="text-900 block font-bold mb-3">Categories</div>
+      <ul class="list-none m-0 p-0">
+        <li
+          pRipple
+          *ngFor="let item of items; let i = index"
+          (click)="changeItem(i)"
+          class="mb-2"
+        >
+          <a
+            class="flex align-items-center cursor-pointer select-none p-3 transition-colors transition-duration-150 border-round"
+            [ngClass]="{
+              'bg-primary': activeIndex === i,
+              'hover:surface-hover': activeIndex !== i
+            }"
+          >
+            <span>{{ item.title }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="card flex-1">
+      <p-accordion>
+        <p-accordionTab
+          *ngFor="let faq of items[activeIndex].faq"
+          [header]="faq.question"
+        >
+          <div
+            class="line-height-3 m-0 p-0"
+            [innerHTML]="loadAnswer(faq.answer)"
+          ></div>
+        </p-accordionTab>
+      </p-accordion>
+    </div>
+  </div>
+</div>

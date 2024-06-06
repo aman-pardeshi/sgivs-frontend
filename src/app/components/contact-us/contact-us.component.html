@@ -1,0 +1,45 @@
+<div class="card wrapper">
+  <h3>Contact Us</h3>
+
+  <div class="">
+    <div class="left-container">
+      <div class="options-container">
+        <div
+          *ngFor="let center of centers; index as i"
+          (click)="handleCenterChange(i)"
+          [ngClass]="{ active: center === selectedCenter }"
+          class="option"
+        >
+          {{ center.attributes.title }}
+        </div>
+      </div>
+
+      <div class="content-container">
+        <h4>{{ selectedCenter?.attributes.title }}</h4>
+        <div>
+          <b>Address</b>
+          <div [innerHTML]="address" class="address-container"></div>
+        </div>
+
+        <div class="mt-3">
+          <b>Telephone: </b>
+          <span>{{ selectedCenter?.attributes?.phone }}</span>
+        </div>
+
+        <div class="mt-3" [innerHTML]="content"></div>
+
+        <div *ngIf="mapEmbedLink" class="mt-3">
+          <iframe
+            [src]="mapEmbedLink"
+            width="600"
+            height="450"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

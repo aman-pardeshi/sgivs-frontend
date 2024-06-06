@@ -1,0 +1,18 @@
+<h2>{{ pageData?.heading }}</h2>
+<div class="visa-type-container">
+  <div class="options-container">
+    <div
+      *ngFor="let tab of tabs; index as i"
+      (click)="handleTabChange(i)"
+      [ngClass]="{ active: tab === currentTab }"
+      class="option"
+    >
+      {{ tab.label }}
+    </div>
+  </div>
+  <div class="content-container">
+    <h3>{{ currentTab?.title }}</h3>
+
+    <div [innerHtml]="currentContent"></div>
+  </div>
+</div>

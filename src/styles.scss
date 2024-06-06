@@ -1,0 +1,126 @@
+/* You can add global styles to this file, and also import other style files */
+$gutter: 1rem; //for primeflex grid system
+
+/* Layout */
+@import "assets/layout/styles/layout/layout.scss";
+
+/* PrimeNG */
+@import "../node_modules/primeng/resources/primeng.min.css";
+@import "../node_modules/primeflex/primeflex.scss";
+@import "../node_modules/primeicons/primeicons.css";
+
+/* Quill Text Editor for p-editor */
+@import "../node_modules/quill/dist/quill.core.css";
+@import "../node_modules/quill/dist/quill.snow.css";
+
+/* Demos */
+@import "assets/demo/styles/flags/flags.css";
+@import "assets/demo/styles/badges.scss";
+@import "assets/demo/styles/code.scss";
+
+html {
+  font-family: "Karla-400";
+  font-size: 1rem !important;
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #a3a3a3;
+    border-radius: 20px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}
+
+.custom-menubar {
+  .p-menubar {
+    padding: 0;
+    background: transparent;
+    border: 0;
+    height: 5rem;
+  }
+
+  .brand-logo {
+    padding-left: 2rem;
+    width: 40px;
+  }
+
+  .p-submenu-list {
+    min-width: 14rem;
+    // max-height: 25rem;
+    // overflow-y: scroll;
+  }
+
+  .p-menuitem-link {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.content-image {
+  max-width: 100%;
+}
+
+.address-container {
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.primary-btn {
+  background: #feef22;
+  color: #000;
+  font-family: "";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 1rem;
+  padding: 10px 24px;
+  border: none;
+  font-size: 1rem;
+}
+
+.main-heading {
+  font-family: "Poppins-800";
+}
+
+.section-heading {
+  font-family: "Poppins-500";
+}
+
+.banner-carousel {
+  .p-carousel-indicator button {
+    width: 0.5rem;
+    border-radius: 1rem;
+  }
+}
+
+.wrapper {
+  width: 88%;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.custom-style-elements {
+  li {
+    list-style-type: "❁";
+    line-height: 1.5;
+    padding-left: 1rem;
+
+    &::marker {
+      padding-top: 2px;
+    }
+  }
+}
