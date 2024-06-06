@@ -23730,7 +23730,7 @@ html ::-webkit-scrollbar-thumb:hover {
 }
 
 .custom-style-elements li {
-  list-style-type: "❁";
+  list-style-type: "◉";
   line-height: 1.5;
   padding-left: 1rem;
 }
