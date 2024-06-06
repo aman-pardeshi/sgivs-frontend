@@ -16,7 +16,7 @@
     <div class="content-container card">
       <h3>{{ currentTab?.title }}</h3>
 
-      <div *ngIf="currentTab.title === 'Fees'; else elseContentBlock">
+      <div *ngIf="currentTab?.title === 'Fees'; else elseContentBlock">
         <div class="">
           <div class="field flex flex-column w-full">
             <label htmlFor="applicationTypes" class="ml-1 mb-2 font-bold"
