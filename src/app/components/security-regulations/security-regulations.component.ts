@@ -34,6 +34,6 @@ export class SecurityRegulationsComponent {
   }
 
   loadContent() {
-    this.content = convertToHtml(this.pageData.blocks[0].content);
+    this.content = convertToHtml(this.pageData.description);
   }
 }

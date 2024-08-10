@@ -1,27 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HomepageDataService } from '../home/homepage-data.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { convertToHtml } from '../visa-type/utils';
+import { DividerModule } from 'primeng/divider';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
+import { LoaderComponent } from '../shared/loader/loader.component';
 
 @Component({
   selector: 'app-contact-us',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, DividerModule, NgxSpinnerModule, LoaderComponent],
   templateUrl: './contact-us.component.html',
   styleUrl: './contact-us.component.scss',
 })
-export class ContactUsComponent {
-  centers: any;
-  selectedCenter: any;
+export class ContactUsComponent implements OnInit {
+  emirates: any;
+  selectedEmirate: any;
   address: SafeHtml | undefined;
   content: SafeHtml | undefined;
   mapEmbedLink: SafeHtml | undefined;
+  centers: any;
+  selectedCenter: any;
+  activeIndex: number = 0;
 
   constructor(
     private homePageDataService: HomepageDataService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private spinner: NgxSpinnerService,
+
   ) {}
 
   ngOnInit(): void {
@@ -29,12 +37,13 @@ export class ContactUsComponent {
   }
 
   fetchCenters() {
-    this.homePageDataService.getCentersWithHolidays().subscribe({
+    this.spinner.show();
+    this.homePageDataService.getCenterApi().subscribe({
       next: (response) => {
         this.centers = response.data;
-        this.selectedCenter = this.centers[0];
-        console.log('error fetching', this.centers[2].attributes.content);
-        this.renderMapLink();
+        console.log(this.centers)
+        this.handleCenterChange(0);
+        this.spinner.hide();
       },
       error: (err) => {
         console.log('error fetching', err);
@@ -42,21 +51,21 @@ export class ContactUsComponent {
     });
   }
 
-  renderMapLink() {
-    if (!this.selectedCenter.attributes.embed_map_link) {
-      this.mapEmbedLink = '';
+  renderMapLink(link: any) {
+    if (!link) {
       return;
     }
 
-    this.mapEmbedLink = this.sanitizer.bypassSecurityTrustResourceUrl(
-      this.selectedCenter.attributes.embed_map_link
-    );
+    return this.sanitizer.bypassSecurityTrustResourceUrl(link);
   }
 
   handleCenterChange(i: number) {
+    this.activeIndex = i;
     this.selectedCenter = this.centers[i];
-    this.address = convertToHtml(this.selectedCenter.attributes.address);
-    this.content = convertToHtml(this.selectedCenter.attributes.content);
-    this.renderMapLink();
+    console.log(this.selectedCenter)
+  }
+
+  renderHtml(text: string) {
+    return convertToHtml(text);
   }
 }

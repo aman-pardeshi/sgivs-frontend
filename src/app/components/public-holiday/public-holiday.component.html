@@ -1,13 +1,13 @@
-<div class="wrapper">
+<div class="wrapper mb-3">
   <div class="card">
     <h3>Public Holidays</h3>
 
     <div class="">
-      Russia Visa Application Centres will be closed for business on the
+      IVS Global will be closed for business on the
       following holidays in 2024:
     </div>
 
-    <div class="mt-3 w-2">
+    <!-- <div class="mt-3 w-2">
       <p-dropdown
         [options]="centers"
         [(ngModel)]="selectedCenter"
@@ -17,28 +17,23 @@
         styleClass="w-full"
         (onChange)="onChangeHandler()"
       ></p-dropdown>
-    </div>
+    </div> -->
 
-    <div class="mt-3" *ngIf="selectedCenter">
+    <div class="mt-3">
       <p-table
-        [columns]="centers"
-        [value]="currentHolidayList"
+        [value]="holidayList"
         [tableStyle]="{ 'min-width': '50rem' }"
       >
         <ng-template pTemplate="header">
           <tr>
             <th>Date</th>
-            <th>Day</th>
             <th>Holiday</th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <ng-template pTemplate="body" let-rowData>
           <tr>
             <td>
               {{ rowData.attributes.date }}
-            </td>
-            <td>
-              {{ rowData.attributes.day }}
             </td>
             <td>
               {{ rowData.attributes.holiday }}
@@ -49,3 +44,13 @@
     </div>
   </div>
 </div>
+
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-fussion"
+  [fullScreen]="true"
+>
+  <app-loader></app-loader>
+</ngx-spinner>

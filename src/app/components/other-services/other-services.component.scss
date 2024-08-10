@@ -1,0 +1,49 @@
+.visa-type-container {
+  display: flex;
+  gap: 1rem;
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
+
+  .options-container {
+    min-height: 20rem;
+
+    @media (max-width: 500px) {
+      width: 100%;
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+    }
+
+    .option {
+      padding: 1rem;
+      cursor: pointer;
+      border-radius: 8px;
+      flex: 0 0 auto;
+    }
+
+    .active {
+      background: var(--blue-100);
+      font-weight: 700;
+    }
+  }
+
+  .content-container {
+    width: 78%;
+    // padding: 1rem;
+    min-height: 40rem;
+
+    @media (max-width: 500px) {
+      width: 100%;
+    }
+
+    .content-image {
+      max-width: 100%;
+    }
+
+    .content {
+      font-family: "Karla-400";
+    }
+  }
+}

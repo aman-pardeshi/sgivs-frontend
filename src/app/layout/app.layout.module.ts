@@ -25,6 +25,8 @@ import { MenuModule } from 'primeng/menu';
 import { HeaderComponent } from '../components/shared/header/header.component';
 import { MegaMenuModule } from 'primeng/megamenu';
 import { MenubarModule } from 'primeng/menubar';
+import { DividerModule } from 'primeng/divider';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,7 @@ import { MenubarModule } from 'primeng/menubar';
     AppConfigModule,
     HeaderComponent,
     MenubarModule,
+    DividerModule,
   ],
   exports: [AppLayoutComponent],
 })

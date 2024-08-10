@@ -5,7 +5,7 @@
     </a>
   </div>
 
-  <div class="option-container">
+  <div class="option-container" *ngIf="items?.length > 0">
     <a [routerLink]="['/']" class="option">Home</a>
 
     <ng-template ngFor let-item [ngForOf]="items" let-i="index">
@@ -41,7 +41,11 @@
       </div>
 
       <ng-template #elseBlock>
-        <a href="#home" class="option active">{{ item.label }}</a>
+        <a [href]="item.link" *ngIf="item.isExternal; else notExternalLink" class="option active">{{ item.label }}</a>
+
+        <ng-template #notExternalLink>
+          <a [routerLink]="[item.link]" class="option active">{{ item.label }}</a>
+        </ng-template>
       </ng-template>
     </ng-template>
 

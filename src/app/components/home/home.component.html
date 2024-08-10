@@ -1,77 +1,96 @@
 <!-- Hero Section -->
 <div class="hero-section">
-  <div class="main">
-    <h1 class="">
-      Experience Seamless
-      <div class="roller">
-        <span id="rolltext">
-          Passport Services<br />
-          Visa Services<br />
-          OCI Services<br />
-          Attestation Services<br />
-          Consular Services<br />
-        </span>
+  <p-carousel
+    [value]="hero?.image?.data"
+    [numVisible]="1"
+    [numScroll]="1"
+    [showIndicators]="false"
+    [showNavigators]="false"
+    [circular]="true"
+    [autoplayInterval]="5000"
+    styleClass="hero-banner-carousel"
+  >
+    <ng-template let-product pTemplate="item">
+      <div class="surface-border img-container">
+        <img
+          src="{{
+            product.attributes.url.includes('http')
+              ? product.attributes.url
+              : 'http://localhost:1337' + product.attributes.url
+          }}"
+          [alt]="product?.attributes?.name"
+          class="hero-banner-img"
+        />
       </div>
-    </h1>
-  </div>
+    </ng-template>
+  </p-carousel>
 
-  <!-- <div class="main">
-    <h1>
-      Experience Seamless
-      <div
-        href=""
-        class="typewrite roller"
-        data-period="2000"
-        data-type='[ "Passport Services.", "Visa Services.", " OCI Services.", "Attestation Services." , "Consular Services"]'
-      >
-        <span class="wrap"></span>
+  <div class="hero-banner-text">
+    <div class="main">
+      <img src="/assets/demo/images/in.svg" class="flag-img" />
+      <h1 class="">
+        {{ hero?.title }}
+      </h1>
+    </div>
+
+    <div class="hero-description text-2xl text-center">
+      {{ hero?.description }}
+      <div class="flex justify-content-center">
+        <a href="{{ hero?.link?.link }}" target="_blank">
+          <button
+            *ngIf="hero?.link?.label"
+            class="primary-btn mt-3 text-2xl cursor-pointer"
+          >
+            {{ hero?.link?.label }}
+          </button>
+        </a>
       </div>
-    </h1>
-  </div> -->
-
-  <div class="hero-description">
-    Your gateway to seamless passport, visa, attestation, and OCI services,
-    ensuring efficiency and peace of mind.
+    </div>
   </div>
-
-  <button class="primary-btn mt-3">Book Appointment</button>
-
-  <img src="assets/demo/images/hero-bg.png" alt="" class="banner-bg-img" />
-
-  <img src="assets/demo/images/hero-bg.png" alt="" class="banner-bg-img2" />
 </div>
 
-<div class="process-container wrapper">
-  <h1 class="section-heading pl-5">Process</h1>
+<div [style]="{ background: '#fff' }">
+  <div class="process-container wrapper">
+    <h3 class="section-heading">How it works</h3>
 
-  <div class="process-subcontainer">
-    <section class="container">
-      <div class="container__sources process-block">
-        <h4 class="mb-0">Choose Service Type</h4>
+    <div class="process-subcontainer">
+      <div class="process-block">
+        <i class="fa-regular fa-hand-pointer text-2xl"></i>
+
+        <div class="process-title">Choose Service</div>
+        <div class="text-color-secondary">
+          Whether you're traveling for tourism, business, or to visit family,
+          we've got you covered.
+        </div>
       </div>
 
-      <svg viewbox="0 0 10 100">
-        <line x1="5" x2="5" y1="0" y2="100" />
-      </svg>
-
-      <div class="container__build process-block">
-        <h4 class="mb-0">Book Appointment</h4>
+      <div class="process-block">
+        <i class="fa-regular fa-calendar-check text-2xl"></i>
+        <div class="process-title">Book Appointment</div>
+        <div class="text-color-secondary">
+          We'll help you find the right appointment at the nearest center.
+        </div>
       </div>
 
-      <svg viewbox="0 0 10 100 ">
-        <line x1="5" x2="5" y1="0" y2="100" />
-      </svg>
-
-      <div class="container__deploy process-block">
-        <h4 class="mb-0">Visit Center</h4>
+      <div class="process-block">
+        <i class="pi pi-map-marker text-2xl"></i>
+        <div class="process-title">Visit Center</div>
+        <div class="text-color-secondary">
+          Bring your passport and other required documents to the center on your
+          appointment day.
+        </div>
       </div>
-    </section>
-    <div>
-      <img
-        src="assets/demo/images/exploring_scrolling_animation.gif"
-        class="gif-element"
-      />
     </div>
+
+    <a
+      href="https://uat-appointment.sgivs.com/appointment/schedule/service-type"
+      p-button
+      icon="pi"
+      label="Get Started"
+      target="_blank"
+    >
+      <p-button label="Get Started" styleClass="mt-3"></p-button>
+    </a>
   </div>
 </div>
 
@@ -83,7 +102,6 @@
     [circular]="true"
     [autoplayInterval]="5000"
   >
-    <!-- [responsiveOptions]="responsiveOptions" -->
     <ng-template let-product pTemplate="item">
       <div class="border-1 surface-border border-round m-2 p-3">
         <div class="mb-3">
@@ -162,32 +180,20 @@
     <p-button label="More News" [routerLink]="'/news/articles'" />
   </div>
 
-  <div class="subcontainer">
-    <h3>Which type of Visa are you searching for?</h3>
-
-    <div class="flex flex-wrap gap-2">
-      <a
-        *ngFor="let visa of visaTypes; let i = index"
-        [routerLink]="['/visa/visa-types', visa.attributes.slug]"
-        class="visa-types text-xl"
-      >
-        {{ visa.attributes.title }}
-      </a>
-    </div>
-  </div>
-</div>
-
-<div class="media-container wrapper">
-  <div class="video-container">
-    <video controls>
+  <div class="subcontainer flex">
+    <video controls width="100%">
       <source
-        src="{{
-          videoMedia?.[0].media.data.attributes.url
-        }}"
+        src="/assets/demo/images/ivs-global.mp4"
         type="video/mp4"
       />
       Your browser does not support the video tag.
     </video>
+  </div>
+</div>
+
+<!-- <div class="media-container wrapper">
+  <div class="video-container">
+    
   </div>
 
   <div class="image-container">
@@ -195,33 +201,45 @@
       <img src="{{ image.media.data.attributes.url }}" alt="" />
     </a>
   </div>
-</div>
+</div> -->
 
-<p-divider />
-<div class="banner-carousel wrapper">
-  <p-carousel
-    [value]="testimonials"
-    [numVisible]="3"
-    [numScroll]="1"
-    [circular]="true"
-    styleClass="mb-3"
-  >
-    <!-- [responsiveOptions]="responsiveOptions" -->
-    <ng-template let-product pTemplate="item">
-      <div class="card m-2 testimonial-card">
-        <div class="relative flex content">
-          <blockquote class="">{{ product.review }}</blockquote>
+<div [style]="{ background: '#fff' }">
+  <div class="banner-carousel wrapper">
+    <h3 class="section-heading mt-3">Testimonials</h3>
+    <p-carousel
+      [value]="testimonials"
+      [numVisible]="3"
+      [numScroll]="1"
+      [circular]="true"
+      styleClass="mb-3"
+      [responsiveOptions]="carouselResponsiveOptions"
+    >
+      <ng-template let-product pTemplate="item">
+        <div class="card m-2 testimonial-card">
+          <div class="relative flex content">
+            <blockquote class="">{{ product.review }}</blockquote>
 
-          <div class="mt-auto">
-            <cite>{{ product.reviewer_name }}</cite>
-            <div>{{ product.country }}</div>
+            <div class="mt-auto">
+              <cite>{{ product.reviewer_name }}</cite>
+              <div>{{ product.country }}</div>
+            </div>
           </div>
         </div>
-      </div>
-    </ng-template>
-  </p-carousel>
+      </ng-template>
+    </p-carousel>
+  </div>
 </div>
 
-<div class="useful-links-container">
+<!-- <div class="useful-links-container">
   <app-useful-links></app-useful-links>
-</div>
+</div> -->
+
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-fussion"
+  [fullScreen]="true"
+>
+  <app-loader></app-loader>
+</ngx-spinner>

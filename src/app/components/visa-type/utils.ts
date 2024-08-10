@@ -145,7 +145,7 @@ function convertChildrenToHtml(children: any): string {
     .map((child) => {
       switch (child.type) {
         case 'text':
-          let codeString = child.text;
+          let codeString = child.text.replace('\n', `<br />`);
           if (child.bold) {
             codeString = `<b>${codeString}</b>`;
           }

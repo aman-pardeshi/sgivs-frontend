@@ -11,6 +11,8 @@ import { CustomerExperienceComponent } from './components/customer-experience/cu
 import { SecurityRegulationsComponent } from './components/security-regulations/security-regulations.component';
 import { UsefulLinksComponent } from './components/useful-links/useful-links.component';
 import { AttestationServiceComponent } from './components/attestation-service/attestation-service.component';
+import { OtherServicesComponent } from './components/other-services/other-services.component';
+import { AttestationProcessComponent } from './components/attestation-process/attestation-process.component';
 
 const routes: Routes = [
   {
@@ -79,6 +81,16 @@ const routes: Routes = [
         path: 'useful-links',
         data: { breadcrumb: 'Useful Links' },
         component: UsefulLinksComponent,
+      },
+      {
+        path: 'services',
+        data: { breadcrumb: 'Services' },
+        component: OtherServicesComponent,
+      },
+      {
+        path: 'attestation-process',
+        data: { breadcrumb: 'Attestation Process' },
+        component: AttestationProcessComponent,
       },
       {
         path: 'dashboard',
@@ -177,7 +189,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    scrollPositionRestoration: 'enabled', // Enables automatic scroll to top
+    anchorScrolling: 'enabled', // Enables anchor scrolling
+  })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

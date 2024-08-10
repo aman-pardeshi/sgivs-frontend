@@ -1,12 +1,99 @@
 <div class="layout-footer">
-  <div class="footer-start">
-    <a>Privacy and cookie policy</a>
+  <div class="footer-subcontainer wrapper">
+    <div class="top-section">
+      <div class="left-side">
+        <div class="flex flex-column gap-3">
+          <div class="text-xl text-white">Quick Links</div>
+          <a [routerLink]="['/']">Home</a>
+          <a>About Us</a>
+          <a routerLink="/contact-us">Contact Us</a>
+          <a>Track Application</a>
+          <a>News</a>
+        </div>
 
-    <a>Terms and conditions</a>
+        <div class="flex flex-column gap-3">
+          <div class="text-xl text-white">Services</div>
+          <a>Passport Services</a>
+          <a>Visa Services</a>
+          <a>OCI</a>
+          <a>Attestation</a>
+          <a>Consular</a>
+        </div>
 
-    <a>Certification and accreditation</a>
-  </div>
-  <div class="footer-end">
-    <span>© IVF Global, All Rights Reserved</span>
+        <div class="flex flex-column gap-3">
+          <div class="text-xl text-white">General</div>
+          <a routerLink="/faq">FAQ's</a>
+          <a routerLink="/security-regulations">Security Regulation</a>
+          <a routerLink="/useful-links">Useful Links</a>
+          <a routerLink="/public-holidays">Public Holidays</a>
+          <a>Sitemap</a>
+        </div>
+      </div>
+
+      <p-divider layout="vertical" />
+
+      <div class="right-side">
+        <div>
+          <div class="text-2xl text-white mb-2">Dubai</div>
+          <div class="mt-1 flex gap-2 align-items-center">
+            <i class="fa-solid fa-location-dot"></i> Room No : 102,103 & 104,
+            Business Atrium Bldg, Oud Metha, Dubai
+          </div>
+          <div class="flex gap-4 mt-2">
+            <a
+              href="mailto:info@sgivs.com"
+              class="flex gap-2 align-items-center"
+            >
+              <i class="fa-solid fa-envelope"></i>infosgivs.com</a
+            >
+            <div class="flex gap-2 align-items-center">
+              <i class="fa-solid fa-phone"></i> +971 4 357 9585
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="text-2xl text-white mb-2">Abu Dhabi</div>
+          <div class="mt-1 flex gap-2 align-items-center">
+            <i class="fa-solid fa-location-dot"></i> Abu Dhabi University
+            building, Room No:701, Shaikh Al Nahyan Camp Area, Abu Dhabi
+          </div>
+          <div class="flex gap-4 mt-2">
+            <a
+              href="mailto:info@sgivs.com"
+              class="flex gap-2 align-items-center"
+            >
+              <i class="fa-solid fa-envelope"></i>infosgivs.com</a
+            >
+            <div class="flex gap-2 align-items-center">
+              <i class="fa-solid fa-phone"></i> +971 4 357 9585
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p-divider class="divider-bg" align="center">
+      <div class="flex gap-5 px-5">
+        <i class="fa-brands fa-linkedin-in text-xl"></i>
+        <i class="fa-brands fa-x-twitter text-xl"></i>
+        <i class="fa-solid fa-envelope text-xl"></i>
+      </div>
+    </p-divider>
+
+    <div class="bottom-section">
+      <div class="flex flex-column justify-content-center align-items-center">
+        <img src="assets/layout/images/logo.png" width="200px" />
+        <div class="text-center mt-2">Copyright &copy; All Rights Reserved</div>
+
+        <div class="flex gap-3 mt-5">
+          <a class="underline">Privacy and cookie policy</a>
+
+          <a class="underline">Terms and conditions</a>
+
+          <a class="underline">Certification and accreditation</a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

@@ -1,7 +1,9 @@
-<div class="card">
-  <div class="px-6 px-6">
-    <h3>{{ pageData?.heading }}</h3>
-
-    <div [innerHTML]="content"></div>
+<div class="wrapper mb-3">
+  <div class="my-4">
+    <h3 class="mb-0 main-heading text-center">
+      {{ pageData?.title }}
+    </h3>
   </div>
+
+  <div class="card" [innerHTML]="content"></div>
 </div>

@@ -1,0 +1,38 @@
+<div class="wrapper">
+  <h2 class="p-1 main-heading">{{ pageData?.title }}</h2>
+  <div class="visa-type-container mb-3">
+    <div [style]="{ width: '25%' }">
+      <div class="options-container card mb-0 p-3">
+        <div
+          *ngFor="let tab of tabs; index as i"
+          (click)="handleTabChange(i)"
+          class="flex align-items-center cursor-pointer select-none p-3 transition-colors transition-duration-150 border-round"
+          [ngClass]="{
+            'active': activeIndex === i,
+            'hover:surface-hover': activeIndex !== i
+          }"
+        >
+          {{ tab.label }}
+        </div>
+      </div>
+    </div>
+    <div class="content-container card">
+      <h3 class="section-heading">{{ currentTab?.label }}</h3>
+
+      <div
+        [innerHtml]="formatHtmlText(currentTab?.content)"
+        class="content custom-style-elements"
+      ></div>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-fussion"
+  [fullScreen]="true"
+>
+  <app-loader></app-loader>
+</ngx-spinner>

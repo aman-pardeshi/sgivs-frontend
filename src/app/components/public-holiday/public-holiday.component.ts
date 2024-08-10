@@ -4,41 +4,45 @@ import { HomepageDataService } from '../home/homepage-data.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
+import { LoaderComponent } from '../shared/loader/loader.component';
 
 @Component({
   selector: 'app-public-holiday',
   standalone: true,
-  imports: [DropdownModule, CommonModule, FormsModule, TableModule],
+  imports: [DropdownModule, CommonModule, FormsModule, TableModule, NgxSpinnerModule, LoaderComponent],
   templateUrl: './public-holiday.component.html',
   styleUrl: './public-holiday.component.scss',
 })
 export class PublicHolidayComponent implements OnInit {
-  centers: any;
   selectedCenter: any;
-  currentHolidayList: any;
+  holidayList: any;
 
-  constructor(private homePageDataService: HomepageDataService) {}
+  constructor(private homePageDataService: HomepageDataService, private spinner: NgxSpinnerService) {}
 
   ngOnInit(): void {
     this.fetchCentersAndHolidays();
   }
 
   fetchCentersAndHolidays() {
-    this.homePageDataService.getCentersWithHolidays().subscribe({
+    this.spinner.show()
+    this.homePageDataService.getHolidays().subscribe({
       next: (response) => {
-        this.centers = response.data;
-        console.log('error fetching', this.centers);
+        this.holidayList = response.data;
+        console.log('error fetching', this.holidayList);
+        this.spinner.hide()
       },
       error: (err) => {
         console.log('error fetching', err);
+        this.spinner.hide()
       },
     });
   }
 
-  onChangeHandler() {
-    this.currentHolidayList = this.centers.filter(
-      (center: any) =>
-        center.attributes.title === this.selectedCenter.attributes.title
-    )[0].attributes.public_holidays_and_closures.data;
-  }
+  // onChangeHandler() {
+  //   this.holidayList = this.centers.filter(
+  //     (center: any) =>
+  //       center.attributes.title === this.selectedCenter.attributes.title
+  //   )[0].attributes.public_holidays_and_closures.data;
+  // }
 }

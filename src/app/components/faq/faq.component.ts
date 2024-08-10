@@ -15,7 +15,7 @@ export class FaqComponent implements OnInit {
   constructor(private homePageDataService: HomepageDataService) {}
 
   ngOnInit(): void {
-    this.fetchPageData('faq');
+    this.fetchPageData('faq-uae');
   }
 
   fetchPageData(slug: string) {

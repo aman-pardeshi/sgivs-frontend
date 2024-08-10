@@ -18,6 +18,8 @@ $gutter: 1rem; //for primeflex grid system
 @import "assets/demo/styles/badges.scss";
 @import "assets/demo/styles/code.scss";
 
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
 html {
   font-family: "Karla-400";
   font-size: 1rem !important;
@@ -74,14 +76,15 @@ html {
 
 .address-container {
   p {
-    margin-bottom: 0;
+    margin-bottom: 10px;
   }
 }
 
 .primary-btn {
   background: #feef22;
   color: #000;
-  font-family: "";
+  font-family: "Karla-400";
+  font-size: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -114,7 +117,7 @@ html {
 }
 
 .custom-style-elements {
-  li {
+  ul li {
     list-style-type: "◉";
     line-height: 1.5;
     padding-left: 1rem;
@@ -122,5 +125,9 @@ html {
     &::marker {
       padding-top: 2px;
     }
+  }
+
+  ol li {
+    line-height: 1.5;
   }
 }

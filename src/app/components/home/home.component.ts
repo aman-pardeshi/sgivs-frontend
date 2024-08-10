@@ -10,6 +10,8 @@ import { CarouselModule } from 'primeng/carousel';
 import { ChipModule } from 'primeng/chip';
 import { UsefulLinksComponent } from '../useful-links/useful-links.component';
 import { environment } from 'src/environments/environment.development';
+import { LoaderComponent } from '../shared/loader/loader.component';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-home',
@@ -23,6 +25,8 @@ import { environment } from 'src/environments/environment.development';
     CarouselModule,
     ChipModule,
     UsefulLinksComponent,
+    LoaderComponent,
+    NgxSpinnerModule,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -45,29 +49,40 @@ export class HomeComponent implements OnInit {
   period: any;
   txt: any;
   isDeleting: any;
+  hero: any;
+  carouselResponsiveOptions = [
+    {
+      breakpoint: '500px',
+      numVisible: 1,
+      numScroll: 1,
+    },
+  ];
 
-  constructor(private homePageDataService: HomepageDataService) {}
+  constructor(
+    private homePageDataService: HomepageDataService,
+    private spinner: NgxSpinnerService
+  ) {}
 
   ngOnInit() {
-    this.fetchPageData('home');
+    this.fetchPageData('home-uae');
     this.fetchNewsArticles();
     this.fetchVisaTypes();
 
     // window.onload = function () {
-    var elements = document.getElementsByClassName('typewrite');
-    for (var i = 0; i < elements.length; i++) {
-      var toRotate = elements[i].getAttribute('data-type');
-      var period = elements[i].getAttribute('data-period');
-      if (toRotate) {
-        this.txtType(elements[i], JSON.parse(toRotate), period);
-      }
-      // }
-      // INJECT CSS
-      var css = document.createElement('style');
-      css.type = 'text/css';
-      css.innerHTML = '.typewrite > .wrap { border-right: 0.08em solid #fff}';
-      document.body.appendChild(css);
-    }
+    // var elements = document.getElementsByClassName('typewrite');
+    // for (var i = 0; i < elements.length; i++) {
+    //   var toRotate = elements[i].getAttribute('data-type');
+    //   var period = elements[i].getAttribute('data-period');
+    //   if (toRotate) {
+    //     this.txtType(elements[i], JSON.parse(toRotate), period);
+    //   }
+    //   // }
+    //   // INJECT CSS
+    //   var css = document.createElement('style');
+    //   css.type = 'text/css';
+    //   css.innerHTML = '.typewrite > .wrap { border-right: 0.08em solid #fff}';
+    //   document.body.appendChild(css);
+    // }
   }
 
   txtType(el: any, toRotate: any, period: any) {
@@ -111,15 +126,18 @@ export class HomeComponent implements OnInit {
   }
 
   fetchPageData(slug: string) {
+    this.spinner.show();
     this.homePageDataService.getPageData(slug).subscribe({
       next: (response) => {
         this.pageData = response.data[0].attributes;
         this.destructureDataFromPageData();
         console.log('Data fetched successfully', this.pageData);
+        this.spinner.hide();
       },
       error: (err) => {
         this.error = err;
         console.log('Error fetching', err);
+        this.spinner.hide();
       },
     });
   }
@@ -127,7 +145,7 @@ export class HomeComponent implements OnInit {
   fetchNewsArticles() {
     this.homePageDataService.getNewsArticles().subscribe({
       next: (response) => {
-        this.newsArticles = response.data;
+        this.newsArticles = response.data.slice(0, 3);
       },
       error: (err) => {
         this.error = err;
@@ -152,7 +170,7 @@ export class HomeComponent implements OnInit {
     this.pageData.blocks.map((block: any) => {
       switch (block.__component) {
         case 'blocks.slider':
-          this.slides = block.slide;
+          this.slides = block.slides;
           break;
 
         case 'blocks.media':
@@ -165,7 +183,12 @@ export class HomeComponent implements OnInit {
           break;
 
         case 'blocks.testimonials':
-          this.testimonials = block.review;
+          this.testimonials = block.reviews;
+          break;
+
+        case 'blocks.hero':
+          this.hero = block;
+          console.log('hero', this.hero.image.data);
           break;
 
         default:

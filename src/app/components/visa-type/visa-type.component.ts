@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { HomepageDataService } from '../home/homepage-data.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SafeHtml } from '@angular/platform-browser';
 import { convertToHtml } from './utils';
 import { Subscription } from 'rxjs';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoaderComponent } from '../shared/loader/loader.component';
 
 @Component({
   selector: 'app-visa-type',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, NgxSpinnerModule, LoaderComponent],
   templateUrl: './visa-type.component.html',
   styleUrl: './visa-type.component.scss',
 })
@@ -23,13 +25,14 @@ export class VisaTypeComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private homePageDataService: HomepageDataService
+    private homePageDataService: HomepageDataService,
   ) {}
 
   ngOnInit() {
     this.routerSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.onRouteChange();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     });
 
@@ -43,6 +46,7 @@ export class VisaTypeComponent implements OnInit {
     const urlParams = this.router.url.split('/');
     this.visaId = urlParams[urlParams.length - 1];
     this.fetchVisaType();
+    window.scrollTo(0, 0); 
   }
 
   fetchVisaType() {
