@@ -3,7 +3,7 @@ import { HomepageDataService } from '../home/homepage-data.service';
 import { convertToHtml } from '../visa-type/utils';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { LoaderComponent } from '../shared/loader/loader.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-other-services',
@@ -18,7 +18,7 @@ export class OtherServicesComponent implements OnInit {
   currentTab: any;
   activeIndex: number = 0;
 
-  constructor(private homePageDataService: HomepageDataService, private spinner: NgxSpinnerService) {}
+  constructor(private homePageDataService: HomepageDataService, private spinner: NgxSpinnerService, private viewportScroller: ViewportScroller) {}
 
   ngOnInit(): void {
     this.fetchPageData('services');
@@ -61,6 +61,7 @@ export class OtherServicesComponent implements OnInit {
   handleTabChange(i: number) {
     this.activeIndex = i;
     this.currentTab = this.tabs[i]
+    this.viewportScroller.scrollToPosition([0, 0]);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }

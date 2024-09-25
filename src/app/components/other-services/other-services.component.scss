@@ -7,16 +7,18 @@
   }
 
   .options-container {
-    min-height: 20rem;
+    width: 25%;
+    background: #fff;
+    border-radius: 8px;
 
-    @media (max-width: 500px) {
-      width: 100%;
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
+    .options-subcontainer {
+      min-height: 20rem;
     }
 
     .option {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
       padding: 1rem;
       cursor: pointer;
       border-radius: 8px;
@@ -25,7 +27,24 @@
 
     .active {
       background: var(--blue-100);
+      padding: 1rem;
+      border-radius: 8px;
       font-weight: 700;
+    }
+
+    @media (max-width: 600px) {
+      width: 100%;
+      overflow-x: auto;
+
+      .options-subcontainer {
+        min-height: 0;
+        width: 100%;
+        display: flex;
+      }
+
+      .option {
+        flex: 2 0 auto;
+      }
     }
   }
 

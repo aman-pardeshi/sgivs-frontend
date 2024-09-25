@@ -4,47 +4,38 @@
       <div class="left-side">
         <div class="flex flex-column gap-3">
           <div class="text-xl text-white">Quick Links</div>
-          <a [routerLink]="['/']">Home</a>
-          <a>About Us</a>
-          <a routerLink="/contact-us">Contact Us</a>
-          <a>Track Application</a>
-          <a>News</a>
-        </div>
-
-        <div class="flex flex-column gap-3">
-          <div class="text-xl text-white">Services</div>
-          <a>Passport Services</a>
-          <a>Visa Services</a>
-          <a>OCI</a>
-          <a>Attestation</a>
-          <a>Consular</a>
+          <a href="/">Home</a>
+          <!-- <a>About Us</a> -->
+          <a href="/contact-us">Contact Us</a>
+          <a href="https://uat-appointment.sgivs.com/appointment/track-status" target="_blank">Track Application</a>
+          <a href="/news/articles">News</a>
         </div>
 
         <div class="flex flex-column gap-3">
           <div class="text-xl text-white">General</div>
-          <a routerLink="/faq">FAQ's</a>
-          <a routerLink="/security-regulations">Security Regulation</a>
-          <a routerLink="/useful-links">Useful Links</a>
-          <a routerLink="/public-holidays">Public Holidays</a>
-          <a>Sitemap</a>
+          <a href="/faq">FAQ's</a>
+          <a href="/security-regulations">Security Regulation</a>
+          <a href="/useful-links">Useful Links</a>
+          <a href="/public-holidays">Public Holidays</a>
+          <a href="/sitemap">Sitemap</a>
         </div>
       </div>
 
-      <p-divider layout="vertical" />
+      <p-divider layout="vertical" class="vertical-divider" />
 
       <div class="right-side">
         <div>
           <div class="text-2xl text-white mb-2">Dubai</div>
           <div class="mt-1 flex gap-2 align-items-center">
-            <i class="fa-solid fa-location-dot"></i> Room No : 102,103 & 104,
+            <i class="fa-solid fa-location-dot"></i> Room No : 102, 103 & 104,
             Business Atrium Bldg, Oud Metha, Dubai
           </div>
-          <div class="flex gap-4 mt-2">
+          <div class="additional-details">
             <a
               href="mailto:info@sgivs.com"
               class="flex gap-2 align-items-center"
             >
-              <i class="fa-solid fa-envelope"></i>infosgivs.com</a
+              <i class="fa-solid fa-envelope"></i>info&#64;sgivs.com</a
             >
             <div class="flex gap-2 align-items-center">
               <i class="fa-solid fa-phone"></i> +971 4 357 9585
@@ -58,15 +49,15 @@
             <i class="fa-solid fa-location-dot"></i> Abu Dhabi University
             building, Room No:701, Shaikh Al Nahyan Camp Area, Abu Dhabi
           </div>
-          <div class="flex gap-4 mt-2">
+          <div class="additional-details">
             <a
-              href="mailto:info@sgivs.com"
+              href="mailto:danish@sgivs.com"
               class="flex gap-2 align-items-center"
             >
-              <i class="fa-solid fa-envelope"></i>infosgivs.com</a
+              <i class="fa-solid fa-envelope"></i>danish&#64;sgivs.com</a
             >
             <div class="flex gap-2 align-items-center">
-              <i class="fa-solid fa-phone"></i> +971 4 357 9585
+              <i class="fa-solid fa-phone"></i> +971 2 445 6994
             </div>
           </div>
         </div>
@@ -75,23 +66,33 @@
 
     <p-divider class="divider-bg" align="center">
       <div class="flex gap-5 px-5">
-        <i class="fa-brands fa-linkedin-in text-xl"></i>
-        <i class="fa-brands fa-x-twitter text-xl"></i>
-        <i class="fa-solid fa-envelope text-xl"></i>
+        <a href="https://www.linkedin.com/company/sgivsglobal/" target="_blank">
+          <i class="fa-brands fa-linkedin-in text-xl"></i>
+        </a>
+        <a href="https://twitter.com/sgivsglobal" target="_blank">
+          <i class="fa-brands fa-x-twitter text-xl"></i>
+        </a>
+        <a href="https://www.facebook.com/sgivsglobal" target="_blank">
+          <i class="fa-brands fa-facebook-f text-xl"></i>
+        </a>
+        <a href="https://www.instagram.com/sgivsglobal" target="_blank">
+          <i class="fa-brands fa-instagram text-xl"></i>
+        </a>
+        <a href="mailto:info@sgivs.com" target="_blank">
+          <i class="fa-solid fa-envelope text-xl"></i>
+        </a>
       </div>
     </p-divider>
 
     <div class="bottom-section">
       <div class="flex flex-column justify-content-center align-items-center">
-        <img src="assets/layout/images/logo.png" width="200px" />
+        <img src="assets/layout/images/logo_white.png" width="200px" />
         <div class="text-center mt-2">Copyright &copy; All Rights Reserved</div>
 
-        <div class="flex gap-3 mt-5">
-          <a class="underline">Privacy and cookie policy</a>
+        <div class="privacy-page-container">
+          <a class="underline" href="/privacy-and-cookie-policy">Privacy and cookie policy</a>
 
-          <a class="underline">Terms and conditions</a>
-
-          <a class="underline">Certification and accreditation</a>
+          <a class="underline" href="/terms-and-conditions">Terms and conditions</a>
         </div>
       </div>
     </div>

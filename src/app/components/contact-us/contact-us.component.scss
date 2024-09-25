@@ -9,13 +9,11 @@
 
 .options-container {
   width: 22%;
-  min-height: 20rem;
+  background: #fff;
+  border-radius: 8px;
 
-  @media (max-width: 500px) {
-    width: 100%;
-    display: flex;
-    gap: 10px;
-    overflow-x: auto;
+  .options-subcontainer {
+    min-height: 20rem;
   }
 
   .option {
@@ -34,23 +32,56 @@
     border-radius: 8px;
     background: var(--blue-100);
   }
+
+  @media (max-width: 600px) {
+    width: 100%;
+    overflow-x: auto;
+
+    .options-subcontainer {
+      min-height: 0;
+      width: 100%;
+      display: flex;
+    }
+
+    .option {
+      flex: 2 0 auto;
+    }
+  }
 }
 
 .subcontainer {
   width: 78%;
+  padding: 1.5rem 2rem;
+  background: #fff;
+  border-radius: 8px;
+
   .center-container {
-    > div {
+    .content-container {
       display: flex;
       gap: 2rem;
     }
-  
-    .content-container {
+
+    .content-subcontainer {
       width: 50%;
     }
-  
+
     .map-container {
       width: 50%;
     }
+  }
+
+  @media (max-width: 600px) {
+    width: 100%;
+    padding: 1rem;
+
+    .content-subcontainer, .map-container {
+      width: 100% !important;
+    }
+
+    .content-container {
+      flex-direction: column;
+    }
+
   }
 }
 

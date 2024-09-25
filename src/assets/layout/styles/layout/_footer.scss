@@ -5,7 +5,6 @@ app-footer {
 .layout-footer {
   padding: 1rem 0;
   display: flex;
-  // justify-content: space-between;
   flex-direction: column;
   background: #192733;
   color: #b6c7d6;
@@ -25,16 +24,8 @@ app-footer {
     gap: 6px;
   }
 
-  // .footer-subcontainer {
-  //   margin-left: auto;
-  //   margin-right: auto;
-  //   max-width: 1080px;
-  //   // margin: 0 auto;
-  // }
-
   .top-section {
     display: flex;
-    // justify-content: space-between;
     gap: 3rem;
     margin-top: 1rem;
     margin-bottom: 3rem;
@@ -42,6 +33,7 @@ app-footer {
     .left-side {
       width: 50%;
       display: flex;
+      justify-content: space-around;
       gap: 3rem;
     }
 
@@ -50,6 +42,32 @@ app-footer {
       display: flex;
       flex-direction: column;
       gap: 2rem;
+
+      .additional-details {
+        display: flex;
+        gap: 1.5rem;
+        margin-top: 0.5rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+
+      .left-side, .right-side {
+        width: 100%;
+      }
+      
+      .additional-details {
+        gap: 0.5rem !important;
+        flex-direction: column;
+      }
+    }
+  }
+
+  .vertical-divider {
+
+    @media (max-width: 600px) {
+      display: none;
     }
   }
 
@@ -72,7 +90,7 @@ app-footer {
     gap: 1rem;
     align-items: center;
 
-    @media (max-width: 500px) {
+    @media (max-width: 600px) {
       flex-direction: column;
       gap: 6px;
     }
@@ -85,6 +103,16 @@ app-footer {
       margin-left: 0.75rem;
       font-size: 1.25rem;
       font-weight: 700;
+    }
+  }
+
+  .privacy-page-container {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    @media (max-width: 600px) {
+      flex-direction: column;
+      gap: 0.5rem;
     }
   }
 }

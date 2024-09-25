@@ -1,7 +1,7 @@
 <div class="topnav" id="myTopnav">
   <div class="logo-container">
     <a class="brand-logo">
-      <img alt="app logo" [src]="logo" width="150" />
+      <img alt="app logo" [src]="logo" class="brand-logo-img" />
     </a>
   </div>
 
@@ -41,10 +41,17 @@
       </div>
 
       <ng-template #elseBlock>
-        <a [href]="item.link" *ngIf="item.isExternal; else notExternalLink" class="option active">{{ item.label }}</a>
+        <a
+          [href]="item.link"
+          *ngIf="item.isExternal; else notExternalLink"
+          class="option active"
+          >{{ item.label }}</a
+        >
 
         <ng-template #notExternalLink>
-          <a [routerLink]="[item.link]" class="option active">{{ item.label }}</a>
+          <a [routerLink]="[item.link]" class="option active">{{
+            item.label
+          }}</a>
         </ng-template>
       </ng-template>
     </ng-template>
@@ -52,92 +59,84 @@
     <a
       href="javascript:void(0);"
       style="font-size: 15px"
-      class="icon"
-      onclick="myFunction()"
+      class="icon text-2xl"
+      (click)="toggleHeader()"
       >&#9776;</a
     >
-
-    <div class="dropdown">
-      <button class="dropbtn">
-        EN
-        <i class="pi pi-angle-down text-sm"></i>
-      </button>
-      <div class="dropdown-content">
-        <a href="#">English</a>
-        <a href="#">Japanese</a>
-      </div>
-    </div>
   </div>
+</div>
 
-  <!-- <p-menubar [model]="items" class="custom-menubar">
-  <ng-template pTemplate="start">
-    <a class="brand-logo">
-      <img alt="app logo" [src]="logo" width="150" />
-    </a>
-  </ng-template>
+<p-sidebar [(visible)]="showMobileNavBar" position="right">
+  <div class="option-mobile">
+    <a
+      [routerLink]="['/']"
+      [style]="{ color: '#000' }"
+      (click)="redirectToUrl('/'); showMobileNavBar = false"
+      >Home</a
+    >
+  </div>
+  <ng-template ngFor let-item [ngForOf]="items" let-i="index">
+    <div class="flex flex-column">
+      <div class="dropdown-mobile" *ngIf="item.items?.length; else elseBlock">
+        <button class="dropbtn-mobile" (click)="handleDropDownMobile($event)">
+          {{ item.label }}
+          <i class="pi pi-angle-down text-sm"></i>
+        </button>
+        <div class="dropdown-content-mobile">
+          <ng-template ngFor let-submenu [ngForOf]="item.items" let-i="index">
+            <div
+              class="submenu-dropdown"
+              *ngIf="submenu.items?.length; else submenuElse"
+            >
+              <button
+                class="submenu-dropbtn"
+                (click)="showMobileNavBar = false"
+              >
+                {{ submenu.label }}
+                <i class="pi pi-angle-right text-sm"></i>
+              </button>
+              <div class="submenu-dropdown-content">
+                <a
+                  *ngFor="let link of submenu.items; index as i"
+                  (click)="
+                    redirectToUrl(link['link']); showMobileNavBar = false
+                  "
+                  >{{ link.label }}</a
+                >
+              </div>
+            </div>
 
-  <ng-template pTemplate="item" let-item>
-    <ng-container *ngIf="item?.link; else noLink">
-      <a [routerLink]="item.link" class="p-menuitem-link">
-        <span class="ml-2">{{ item?.label }}</span>
-      </a>
-    </ng-container>
-
-    <ng-template #urlRef>
-      <a
-        *ngIf="item.url; else noLink"
-        [href]="item.url"
-        class="p-menuitem-link"
-      >
-        <span class="ml-2">{{ item?.attributes.label }}</span>
-      </a>
-    </ng-template>
-
-    <ng-template #noLink>
-      <div class="p-menuitem-link">
-        <span class="ml-2">{{ item?.label }}</span>
-        <span
-          *ngIf="item?.items?.length > 0"
-          class="pi pi-fw pi-angle-down ml-2"
-        ></span>
+            <ng-template #submenuElse>
+              <a
+                (click)="
+                  redirectToUrl(submenu.link); showMobileNavBar = false
+                "
+                class="cursor-pointer"
+                >{{ submenu.label }}</a
+              >
+            </ng-template>
+          </ng-template>
+        </div>
       </div>
-    </ng-template>
-  </ng-template>
 
-  <ng-template pTemplate="end">
-    <div class="topbar-profile mr-3">
-      <button
-        class="topbar-profile-button p-link"
-        type="button"
-        pStyleClass="@next"
-        enterClass="hidden"
-        enterActiveClass="scalein"
-        leaveToClass="hidden"
-        leaveActiveClass="fadeout"
-      >
-        <!-- [hideOnOutsideClick]="true" -->
-  <!-- EN
-        <i class="pi pi-angle-down"></i>
-      </button>
-      <ul
-        class="list-none p-3 m-0 border-round shadow-2 hidden absolute surface-overlay origin-top w-full sm:w-12rem mt-2 right-0 top-auto"
-      >
-        <li>
+      <ng-template #elseBlock>
+        <a
+          [href]="item.link"
+          target="_blank"
+          *ngIf="item.isExternal; else notExternalLink"
+          class="option-mobile"
+          >{{ item.label }}</a
+        >
+
+        <ng-template #notExternalLink>
           <a
-            pRipple
-            class="flex p-2 border-round align-items-center hover:surface-hover transition-colors transition-duration-150 cursor-pointer"
+            [routerLink]="[item.link]"
+            class="option-mobile"
+            (click)="showMobileNavBar = false"
+            >{{ item.label }}</a
           >
-            <span>English</span>
-          </a>
-          <a
-            pRipple
-            class="flex p-2 border-round align-items-center hover:surface-hover transition-colors transition-duration-150 cursor-pointer"
-          >
-            <span>Japanese</span>
-          </a>
-        </li>
-      </ul>
+        </ng-template>
+      </ng-template>
     </div>
   </ng-template>
-</p-menubar> -->
-</div>
+</p-sidebar>

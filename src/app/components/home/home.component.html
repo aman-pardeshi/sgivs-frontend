@@ -27,8 +27,11 @@
 
   <div class="hero-banner-text">
     <div class="main">
-      <img src="/assets/demo/images/in.svg" class="flag-img" />
-      <h1 class="">
+      <div>
+        <img src="/assets/demo/images/in.svg" class="flag-img" />
+      </div>
+
+      <h1 class="flex justify-content-center">  
         {{ hero?.title }}
       </h1>
     </div>
@@ -165,7 +168,7 @@
         *ngFor="let article of newsArticles; let i = index"
       >
         <a
-          [routerLink]="['/news/article', article.attributes.slug]"
+          [href]="'/news/article/' + article.attributes.slug"
           class="text-xl"
           >{{ article.attributes.title }}</a
         >
@@ -177,7 +180,7 @@
       </div>
     </div>
 
-    <p-button label="More News" [routerLink]="'/news/articles'" />
+    <a href="/news/articles" class="p-button p-button-label">More News</a>
   </div>
 
   <div class="subcontainer flex">
@@ -204,7 +207,7 @@
 </div> -->
 
 <div [style]="{ background: '#fff' }">
-  <div class="banner-carousel wrapper">
+  <div class="banner-carousel">
     <h3 class="section-heading mt-3">Testimonials</h3>
     <p-carousel
       [value]="testimonials"

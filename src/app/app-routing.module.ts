@@ -68,8 +68,8 @@ const routes: Routes = [
         component: FaqComponent,
       },
       {
-        path: 'customer-exerience',
-        data: { breadcrumb: 'Customer Experience' },
+        path: 'customer-feedback',
+        data: { breadcrumb: 'Customer Feedback' },
         component: CustomerExperienceComponent,
       },
       {

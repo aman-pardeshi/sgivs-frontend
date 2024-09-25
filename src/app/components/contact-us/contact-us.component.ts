@@ -7,6 +7,8 @@ import { convertToHtml } from '../visa-type/utils';
 import { DividerModule } from 'primeng/divider';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { LoaderComponent } from '../shared/loader/loader.component';
+import { Subscription } from 'rxjs';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact-us',
@@ -24,16 +26,23 @@ export class ContactUsComponent implements OnInit {
   centers: any;
   selectedCenter: any;
   activeIndex: number = 0;
+  private routerSubscription: Subscription | undefined;
 
   constructor(
     private homePageDataService: HomepageDataService,
     private sanitizer: DomSanitizer,
     private spinner: NgxSpinnerService,
-
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
     this.fetchCenters();
+
+    this.routerSubscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
   }
 
   fetchCenters() {
@@ -52,17 +61,22 @@ export class ContactUsComponent implements OnInit {
   }
 
   renderMapLink(link: any) {
+
     if (!link) {
+
       return;
     }
 
-    return this.sanitizer.bypassSecurityTrustResourceUrl(link);
+    const renderedLink = this.sanitizer.bypassSecurityTrustResourceUrl(link)
+    return renderedLink;
   }
 
   handleCenterChange(i: number) {
+    this.spinner.show();
     this.activeIndex = i;
     this.selectedCenter = this.centers[i];
     console.log(this.selectedCenter)
+    this.spinner.hide();
   }
 
   renderHtml(text: string) {

@@ -19,14 +19,14 @@ export class CustomerExperienceComponent {
   constructor(private homePageDataService: HomepageDataService) {}
 
   ngOnInit(): void {
-    this.fetchPageData('customer-experience');
+    this.fetchPageData('customer-feedback');
   }
 
   fetchPageData(slug: string) {
     this.homePageDataService.getPageData(slug).subscribe({
       next: (response) => {
         this.pageData = response.data[0].attributes;
-        this.items = this.pageData.blocks;
+        this.items = this.pageData.blocks[0]?.tabs;
         console.log('Data fetched successfully', this.pageData);
       },
       error: (err) => {

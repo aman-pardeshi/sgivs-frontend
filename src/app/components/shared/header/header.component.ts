@@ -5,11 +5,12 @@ import { MegaMenuItem, MenuItem } from 'primeng/api';
 import { MegaMenuModule } from 'primeng/megamenu';
 import { MenubarModule } from 'primeng/menubar';
 import { HomepageDataService } from '../../home/homepage-data.service';
+import { SidebarModule } from 'primeng/sidebar';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [MenubarModule, CommonModule, MegaMenuModule],
+  imports: [MenubarModule, CommonModule, MegaMenuModule, SidebarModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
@@ -18,6 +19,7 @@ export class HeaderComponent implements OnInit {
 
   items: MenuItem[] | undefined;
   searchActive: boolean = false;
+  showMobileNavBar: boolean = false;
 
   activateSearch() {
     this.searchActive = true;
@@ -53,5 +55,24 @@ export class HeaderComponent implements OnInit {
         console.log('Error Fetching', err);
       },
     });
+  }
+
+  toggleHeader() {
+    this.showMobileNavBar = !this.showMobileNavBar;
+    console.log('elp-click', this.showMobileNavBar);
+  }
+
+  redirectToUrl(url: string) {
+    this.router.navigateByUrl(url);
+  }
+
+  handleDropDownMobile(event) {
+    const nextSibling = event.currentTarget.nextElementSibling;
+
+    if (nextSibling.className.includes('active')) {
+      nextSibling.className = 'dropdown-content-mobile';
+    } else {
+      nextSibling.className += ' dropdown-content-mobile-active';
+    }
   }
 }

@@ -45,6 +45,10 @@ html {
   }
 }
 
+html, body {
+  overflow: auto; /* Ensure that the body can scroll */
+}
+
 .custom-menubar {
   .p-menubar {
     padding: 0;
@@ -72,6 +76,10 @@ html {
 
 .content-image {
   max-width: 100%;
+}
+
+.content-link {
+  word-wrap: break-word;
 }
 
 .address-container {

@@ -169,7 +169,7 @@ function convertChildrenToHtml(children: any): string {
         // Handle other child types as needed
 
         case 'link':
-          return `<a href="${child.url}">${child.children[0].text}</a>`;
+          return `<a href="${child.url}" class="content-link" >${child.children[0].text}</a>`;
 
         case 'list-item':
           return `<li>${convertChildrenToHtml(child.children)}</li>`;

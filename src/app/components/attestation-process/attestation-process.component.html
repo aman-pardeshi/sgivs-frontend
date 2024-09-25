@@ -1,12 +1,12 @@
 <div class="wrapper">
   <h2 class="p-1 main-heading">{{ pageData?.title }}</h2>
   <div class="visa-type-container mb-3">
-    <div [style]="{ width: '22%' }">
-      <div class="options-container card mb-0 p-3">
+    <div class="options-container">
+      <div class="options-subcontainer mb-0 p-3">
         <div
           *ngFor="let tab of tabs; index as i"
           (click)="handleTabChange(i)"
-          class="flex align-items-center cursor-pointer select-none p-3 transition-colors transition-duration-150 border-round"
+          class="option border-round"
           [ngClass]="{
             'active': activeIndex === i,
             'hover:surface-hover': activeIndex !== i

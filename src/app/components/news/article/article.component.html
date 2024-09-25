@@ -1,23 +1,25 @@
-<h3>News and Updates</h3>
-<div class="card">
-  <div class="surface-section px-4 py-6 md:px-6 lg:px-7">
-    <div class="grid nogutter">
-      <div class="col-12 lg:col-4 p-4" *ngFor="let article of newsArticles">
-        <div class="border-top-3 border-blue-600"></div>
-        <div class="text-blue-600 font-medium my-2">
-          {{ article.attributes.departure_country }}
-        </div>
-        <div class="text-900 font-medium text-xl line-height-3 mb-3">
-          <a [routerLink]="['/news/article', article.attributes.slug]">
-            {{ article.attributes.title }}
-          </a>
-        </div>
-
-        <div class="flex">
-          <div class="ml-auto">
-            <div class="text-xs flex align-items-center text-700">
-              <i class="pi pi-calendar mr-1 text-xs"></i>
-              <span>{{ article.attributes.date }}</span>
+<div class="wrapper mb-3">
+  <h3>News and Updates</h3>
+  <div class="card">
+    <div class="surface-section px-4 py-6 md:px-6 lg:px-7">
+      <div class="grid nogutter">
+        <div class="col-12 lg:col-4 p-4" *ngFor="let article of newsArticles">
+          <div class="border-top-3 border-blue-600"></div>
+          <div class="text-blue-600 font-medium my-2">
+            {{ article.attributes.departure_country }}
+          </div>
+          <div class="text-900 font-medium text-xl line-height-3 mb-3">
+            <a [routerLink]="['/news/article', article.attributes.slug]">
+              {{ article.attributes.title }}
+            </a>
+          </div>
+  
+          <div class="flex">
+            <div class="ml-auto">
+              <div class="text-xs flex align-items-center text-700">
+                <i class="pi pi-calendar mr-1 text-xs"></i>
+                <span>{{ article.attributes.date }}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -25,3 +27,13 @@
     </div>
   </div>
 </div>
+
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-fussion"
+  [fullScreen]="true"
+>
+  <app-loader></app-loader>
+</ngx-spinner>
